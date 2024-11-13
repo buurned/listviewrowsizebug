@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ListViewWithCollectionViewOrListHeightProblem.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ScrollView>
+        <Grid Padding="30,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="ListView, Binding an ObservableCollection within ViewModel" />
+
+            <ListView
+                x:Name="LvFileVMs"
+                Grid.Row="1"
+                BackgroundColor="Red"
+                HasUnevenRows="True"
+                HorizontalOptions="FillAndExpand"
+                ItemTapped="LvFileVMs_ItemTapped"
+                ItemsSource="{Binding FileVMs}"
+                SelectionMode="Single"
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,0,0,30">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Title}" />
+                                <Image
+                                    Grid.Row="1"
+                                    IsVisible="{Binding ShowImage}"
+                                    Source="{Binding ImageSource}" />
+                                <Label
+                                    Grid.Row="1"
+                                    IsVisible="{Binding ShowDescription}"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding Description}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <BoxView
+                Grid.Row="2"
+                Margin="0,10,0,10"
+                BackgroundColor="Black"
+                HeightRequest="3" />
+            <Label
+                Grid.Row="3"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="ListView with CustomObservableCollection within ViewModel" />
+            <ListView
+                x:Name="LvFileVMsWorkaround"
+                Grid.Row="4"
+                BackgroundColor="Green"
+                HasUnevenRows="True"
+                HorizontalOptions="FillAndExpand"
+                ItemTapped="LvFileVMsWorkaround_ItemTapped"
+                ItemsSource="{Binding FileVMs}"
+                SelectionMode="Single"
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,0,0,30">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Title}" />
+                                <Image
+                                    Grid.Row="1"
+                                    IsVisible="{Binding ShowImage}"
+                                    Source="{Binding ImageSource}" />
+                                <Label
+                                    Grid.Row="1"
+                                    IsVisible="{Binding ShowDescription}"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding Description}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
